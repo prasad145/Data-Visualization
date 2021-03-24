@@ -1,0 +1,30 @@
+<body>
+    <script>
+        const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+        const w = 500;
+        const h = 100;
+
+        const svg = d3.select("body")
+                      .append("svg")
+                      .attr("width", w)
+                      .attr("height", h)
+        
+        svg.selectAll('rect')
+           .data(dataset)
+           .enter()
+           .append("rect")
+           .attr("width", 25)
+           .attr("height", (d, i) => {
+               return d * 3;
+           })
+           .attr("x", (d, i) => {
+               return i * 30;  //x coordinate value updates 30 times so that there will be gap in the rectangles in svg
+           })              
+           .attr("y", (d, i) => {
+               //to make inverted bar chart into perfect one we have formula
+               // y = heightOfSVG - heightOfBar 
+               return h - (3 * d); //here bar is 3 times data points so
+           })
+           .attr("fill", "navy")
+    </script>
+</body>
